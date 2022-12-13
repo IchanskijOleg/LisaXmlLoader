@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>CreateRegistryXsmFromIdeaBankExcel.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Export2LISA.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+
+</Project>

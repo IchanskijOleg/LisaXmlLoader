@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Створення виплати. III конектор. Вхідна xml.-->
+<COMPENSATION>
+	<!--Код страхового випадку-->
+	<INSURANCEACCIDENTID>101536</INSURANCEACCIDENTID>
+	<RISKS>
+		<RISK>
+			<!--Код типу ризику-->
+			<RISKTYPEID>30</RISKTYPEID>
+			<!--Код ФО по полісу-->
+			<INDIVIDUALID>548213</INDIVIDUALID>
+			<!--Тип ЗЛ-->
+			<FORINDIVIDUALTYPEID>1</FORINDIVIDUALTYPEID>			
+			<POLICIES>
+				<POLICY>
+					<!--Код першої версії полісу-->
+					<INITIALID>2166138</INITIALID>
+					<!--1  прийнято; 2  відмовлено -->
+					<ACCIDENTSTATUSID>1</ACCIDENTSTATUSID>
+					<!--Причина відмови тягнути з довідника lisa.reasontorejectcompensation-->
+					<REASONTOREJECTCOMPENSATIONID></REASONTOREJECTCOMPENSATIONID>
+					<!--Процент от максимальной компенсации-->
+					<COMPENSATIONRATE>100</COMPENSATIONRATE>
+					<!--Дата прийняття рішення-->
+					<ACCIDENTSTATUSDATE>06.05.2022</ACCIDENTSTATUSDATE>
+					<!--Коментар-->
+					<COMMENTARY>Коментар1</COMMENTARY>
+					<!--Номер страхового акту-->
+					<ACCIDENTSERTIFICATENO>123</ACCIDENTSERTIFICATENO>
+					<!--Дата страхового акту-->
+					<ACCIDENTSERTIFICATEDATE>06.05.2022</ACCIDENTSERTIFICATEDATE>
+					<BENEFICIARIES>
+						<BENEFICIARY>
+							<!--Відсоток компенсації для вибраної особи-->
+							<BENEFICIARYRATE>70</BENEFICIARYRATE>
+							<!--Код ФО вигодонабувача-->
+							<INDIVIDUALID>548213</INDIVIDUALID>
+							<!--Валюта виплати-->
+							<CURRENCYSYMBOLCODE>UAH</CURRENCYSYMBOLCODE>
+							<!--Дата виплати-->
+							<FIRSTCOMPENSATIONDATE>07.05.2022</FIRSTCOMPENSATIONDATE>
+							<!--Статус виплати lisa.compensationstatus:
+								0	Не виплачена
+								1	Відправлена заявка на виплату
+								2	Заявка відхилена
+								3	Виплачена
+								4	Виплати проводяться
+								5	Виплати зупинені по смерті-->
+							<COMPENSATIONSTATUS>4</COMPENSATIONSTATUS>
+						</BENEFICIARY>
+						<BENEFICIARY>
+							<BENEFICIARYRATE>30</BENEFICIARYRATE>
+							<INDIVIDUALID>1574299</INDIVIDUALID>
+							<CURRENCYSYMBOLCODE>UAH</CURRENCYSYMBOLCODE>
+							<FIRSTCOMPENSATIONDATE>07.05.2022</FIRSTCOMPENSATIONDATE>
+							<COMPENSATIONSTATUS>4</COMPENSATIONSTATUS>
+						</BENEFICIARY>
+					</BENEFICIARIES>
+				</POLICY>
+				<POLICY>
+					<!--Код першої версії полісу-->
+					<INITIALID>2166139</INITIALID>
+					<!--1  прийнято; 2  відмовлено -->
+					<ACCIDENTSTATUSID>1</ACCIDENTSTATUSID>
+					<!--Причина відмови тягнути з довідника lisa.reasontorejectcompensation-->
+					<REASONTOREJECTCOMPENSATIONID></REASONTOREJECTCOMPENSATIONID>
+					<!--Процент от максимальной компенсации-->
+					<COMPENSATIONRATE>100</COMPENSATIONRATE>
+					<!--Дата прийняття рішення-->
+					<ACCIDENTSTATUSDATE>06.05.2022</ACCIDENTSTATUSDATE>
+					<!--Коментар-->
+					<COMMENTARY>Коментар1</COMMENTARY>
+					<!--Номер страхового акту-->
+					<ACCIDENTSERTIFICATENO>123</ACCIDENTSERTIFICATENO>
+					<!--Дата страхового акту-->
+					<ACCIDENTSERTIFICATEDATE>06.05.2022</ACCIDENTSERTIFICATEDATE>
+					<BENEFICIARIES>
+						<BENEFICIARY>
+							<!--Відсоток компенсації для вибраної особи-->
+							<BENEFICIARYRATE>70</BENEFICIARYRATE>
+							<!--Код ФО вигодонабувача-->
+							<INDIVIDUALID>548213</INDIVIDUALID>
+							<!--Валюта виплати-->
+							<CURRENCYSYMBOLCODE>UAH</CURRENCYSYMBOLCODE>
+							<!--Дата виплати-->
+							<FIRSTCOMPENSATIONDATE>07.05.2022</FIRSTCOMPENSATIONDATE>
+							<!--Статус виплати LISA.COMPENSATIONSTATUS-->
+							<COMPENSATIONSTATUS>4</COMPENSATIONSTATUS>
+						</BENEFICIARY>
+						<BENEFICIARY>
+							<BENEFICIARYRATE>30</BENEFICIARYRATE>
+							<INDIVIDUALID>1574299</INDIVIDUALID>
+							<CURRENCYSYMBOLCODE>UAH</CURRENCYSYMBOLCODE>
+							<FIRSTCOMPENSATIONDATE>07.05.2022</FIRSTCOMPENSATIONDATE>
+							<COMPENSATIONSTATUS>4</COMPENSATIONSTATUS>
+						</BENEFICIARY>
+					</BENEFICIARIES>
+				</POLICY>
+			</POLICIES>
+		</RISK>		
+	</RISKS>
+</COMPENSATION>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Відповідь III конектора для страхового акту. Вихідна xml.-->
+<COMPENSATIONBENEFICIARIES>
+	<!--Виплати за вигодонабувачами-->
+	<COMPENSATIONBENEFICIARY>
+		<!--загальний блок для виплати-->
+		<COMPENSATION>
+			<!--код полісу-->
+			<POLICYID>1550394</POLICYID>
+			<!--сума виплати-->
+			<COMPENSATIONAMOUNTSUM>3375000</COMPENSATIONAMOUNTSUM>
+			<!--сума бонусів-->
+			<BONUSAMOUNTSUM>0</BONUSAMOUNTSUM>
+			<!--сума виплати з бонусами-->
+			<COMPENSATIONAMOUNTPLUSBONUSSUM>3375000</COMPENSATIONAMOUNTPLUSBONUSSUM>
+			<!--сума виплати словами-->
+			<COMPENSATIONAMOUNTPLUSBONUSSUMTEXT>Тридцать три тисячі сімсот п`ятдесят, 00.</COMPENSATIONAMOUNTPLUSBONUSSUMTEXT>
+			<!--валюта виплати-->
+			<CURRENCYSYMBOLCODE>гривня</CURRENCYSYMBOLCODE>
+			<!--загальна сума сплачних внесків-->
+			<TOTALPAY>1001115</TOTALPAY>
+			<!--відсоток компенсації-->
+			<ALTEREDCOMPENSATIONRATE>5</ALTEREDCOMPENSATIONRATE>
+			<!--сума поверненння-->
+			<RETURNEXTRAAMOUNT>0</RETURNEXTRAAMOUNT>
+			<!--сума повернення словами-->
+			<RETURNEXTRAAMOUNTTEXT>нуль,  00.</RETURNEXTRAAMOUNTTEXT>
+			<!--сума заборгованості-->
+			<DEBTCALCULATEDSUM>0</DEBTCALCULATEDSUM>
+			<!--сума заборгованості словами-->
+			<DEBTCALCULATEDSUMTEXT>нуль,  00.</DEBTCALCULATEDSUMTEXT>
+			<!--тип ануїтету: 1 - разово; 0 - ануїтет-->
+			<ANNUITYTYPEID>1</ANNUITYTYPEID>
+			<!--сума РКО-->
+			<RKOAMOUNTSUM>0</RKOAMOUNTSUM>
+			<!--договір оплачений по-->
+			<PAYMAXDATE>27.06.2022</PAYMAXDATE>
+			<!--Страхова сума-->
+			<RISKAMOUNT>7500000</RISKAMOUNT>
+		</COMPENSATION>
+		<BENEFICIARIES>
+			<BENEFICIARY>
+				<ID>104304</ID>
+				<!--Код договора страхования-->
+				<INSURANCEPOLICYID>1550394</INSURANCEPOLICYID>
+				<!--Код риска-->
+				<INSURANCERISKTYPEID>30</INSURANCERISKTYPEID>
+				<!--Тип ЗЛ-->
+				<FORINDIVIDUALTYPEID>1</FORINDIVIDUALTYPEID>
+				<!--Номер выгодоприобретателя-->
+				<BENEFICIARYNO>1</BENEFICIARYNO>
+				<!--Код страхового случая-->
+				<INSURANCEACCIDENTID>101553</INSURANCEACCIDENTID>
+				<!--Процент доли выгодоприобретателя-->
+				<BENEFICIARYRATE>100</BENEFICIARYRATE>
+				<!--Безотзывное право-->
+				<BENEFICIARYNR>0</BENEFICIARYNR>
+				<!--Был последним в списке-->
+				<THELAST>1</THELAST>
+				<!--Сумма страхового возмещения-->
+				<COMPENSATIONAMOUNT>3375000</COMPENSATIONAMOUNT>
+				<!--Признак "освобождение от уплаты взносов"-->
+				<ISWOP>0</ISWOP>
+				<!--Срок выплаты аннуитета-->
+				<ANNUITYTERM>0</ANNUITYTERM>
+				<!--Пожизненный аннуитет-->
+				<PERPETUALANNUITY>0</PERPETUALANNUITY>
+				<!--Гарантированный срок выплаты аннуитета-->
+				<SUCCESSIONTERM>0</SUCCESSIONTERM>
+				<!--Выплата аннуитета 0 - пренумерандо, 1 - постнумерандо-->
+				<PRENUMERANDO>0</PRENUMERANDO>
+				<!--ЮЛ?-->
+				<ISJURIDICAL>0</ISJURIDICAL>
+				<!--Код ФЛ-->
+				<INDIVIDUALID>1411599</INDIVIDUALID>
+				<!--Тип виплати (CompensationType.id)-->
+				<RETURNSEXTRA>0</RETURNSEXTRA>
+				<!--Размер бонусов в составе выплаты-->
+				<BONUSAMOUNT>0</BONUSAMOUNT>
+				<!--Размер бонуса в чистом виде, без штрафов, надбавок и т.п.-->
+				<PUREBONUSAMOUNT>0</PUREBONUSAMOUNT>
+				<!--Валюта расчета выплаты (обычно равна валюте полиса, кроме возвратов)-->
+				<CURRENCYSYMBOLCODE>UAH</CURRENCYSYMBOLCODE>
+				<!--Способ денежной выплаты (0 - не определено, 1 - безналичный, 2 - касса)-->
+				<PAYMENTTYPE>0</PAYMENTTYPE>
+				<!--Код первой версии полиса-->
+				<INITIALID>1550394</INITIALID>
+				<!--Дата выплаты (для аннуитетов - первой, для Освобождение от взносов - начало периода освобождения)-->
+				<FIRSTCOMPENSATIONDATE>02.05.2022</FIRSTCOMPENSATIONDATE>
+				<!--Фактическая дата создания информации о страховой выплате-->
+				<CREATEDATE>02.05.2022</CREATEDATE>
+				<!--Пользователь, создавший запись-->
+				<CREATEUSERNAME>AUTO</CREATEUSERNAME>
+				<!--Фактическая выплата в валюте расчета (0 - нет, 1 - да)-->
+				<PAYINCALCCURRENCY>0</PAYINCALCCURRENCY>
+				<!--Статус выплаты-->
+				<STATUS>0</STATUS>
+				<!--Спосіб утримання боргу (код функції)-->
+				<DEBTRETENTIONFUNCTIONID>-1</DEBTRETENTIONFUNCTIONID>
+				<!--Дату и время последнего изменения-->
+				<MODIFYDATE>02.05.2022</MODIFYDATE>
+				<!--Оператор внесший последнее изменение-->
+				<USERNAME>AUTO</USERNAME>
+				<!--Борг розрахований, вал.-->
+				<DEBTCALCULATED>0</DEBTCALCULATED>
+				<!--Спосіб конвертації сум в гривні 0: по вказаному курсу, 1: по курсу на дату фактичної  виплати-->
+				<CURRENCYRATEMODE>1</CURRENCYRATEMODE>
+			</BENEFICIARY>
+		</BENEFICIARIES>
+	</COMPENSATIONBENEFICIARY>
+</COMPENSATIONBENEFICIARIES>

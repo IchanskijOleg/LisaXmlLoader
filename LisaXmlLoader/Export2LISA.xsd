@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!-- версия реестра 1.0.17 -->
+<xsd:schema xmlns:xdb="http://www.borland.com/schemas/delphi/6.0/XMLDataBinding" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<!-- параметры, перекрывают поведение, заданное константами системы-->
+	<xsd:complexType name="ParametersType">
+		<xsd:sequence>
+			<xsd:element name="loaddocument" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="setaccountsdepartmentstatus" type="xsd:int" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- информация по риску -->
+	<xsd:complexType name="InsuranceRiskDescriptionType">
+		<xsd:sequence>
+			<xsd:element name="RiskId" type="xsd:int"/>
+			<xsd:element name="ForIndividualTypeID" type="ForIndividualType"/>
+			<xsd:element name="ND" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="NDTERM" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="NR" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="BR" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="BRA" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AGEEXTRAPREMIUM" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="NETTOCORRECTION" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RiskAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RiskAmount2" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="isWopProtected" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="WopPrimaryPayTerm" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PayTerm" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="WaitTerm" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Term" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PerpetualPayments" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PerpetualAnnuity" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PerpetualTerm" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AnnuityFrequency" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AnnuityTerm" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AnnuityTypeid" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Reinsure" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ReinsurerAgreementid" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="IndividualRid" type="xsd:string" minOccurs="0"/>
+			<!-- RiskId: Код риска -->
+			<!-- ForIndividualTypeID: К кому относится риск-->
+			<!-- ND: надбавка ND на уровне риска указывается в промилле-->
+			<!-- NDTERM: Термін дії нетто-надбавки ND-->
+			<!-- NR: Нетто-надбавка у відсотках-->
+			<!-- BR: Брутто-надбавка у відсотках-->
+			<!-- BRA: Комісія агента-->
+			<!-- AGEEXTRAPREMIUM: Надбавка до віку-->
+			<!-- NETTOCORRECTION: Коеф. к нетто-тарифу в процентах-->
+			<!-- RiskAmount: Страховая сумма в копейках-->
+			<!-- RiskAmount2: Страховая сумма (2) в копейках-->
+			<!-- isWopProtected: Защищен риском WOP (1: да, 0: нет)-->
+			<!-- WopPrimaryPayTerm: Срок защиты WOP-->
+			<!-- PayTerm: Срок уплаты взносов. Если не задан, будет использован PayTerm для группы-->
+			<!-- WaitTerm: Срок ожидания риска-->
+			<!-- Term: Срок действия риска-->
+			<!-- PerpetualPayment: Взносы платятся пожизненно (1: да, 0: нет)-->
+			<!-- PerpetualAnnuity: Пожизненный аннуитет (1: да, 0: нет)-->
+			<!-- PerpetualTerm: Риск действует пожизненно (1: да, 0: нет)-->
+			<!-- annuityfrequency: Частота выплаты аннуитета (M, Q, H, Y)-->
+			<!-- annuityterm: Срок выплаты аннуитета-->
+			<!-- annuitytypeid: Тип аннуитета-->
+			<!-- reinsure: Перестраховывать (1: да, 0: нет)-->
+			<!-- reinsureragreementid: Код договора с перестраховщиком-->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- перечисление рисков входящих в группу -->
+	<xsd:complexType name="InsuranceRiskDescriptionsType">
+		<xsd:sequence>
+			<xsd:element name="InsuranceRiskDescription" type="InsuranceRiskDescriptionType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание группы рисков полиса -->
+	<xsd:complexType name="InsuranceRiskType">
+		<xsd:sequence>
+			<xsd:element name="InsuranceRiskGroupId" type="xsd:int"/>
+			<xsd:element name="RiskAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PayAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PayTermType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="M"/>
+						<xsd:enumeration value="Y"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+				<!-- Не используется. Оставлено для обратной совместимости -->
+			</xsd:element>
+			<xsd:element name="InsuranceRiskDescriptions" type="InsuranceRiskDescriptionsType" minOccurs="0"/>
+			<xsd:element name="PayTerm" type="xsd:double"/>
+			<!-- Группа рисков, код -->
+			<!-- Страховая сумма в валюте страхования, в копейках -->
+			<!-- Страховой взнос, в копейках -->
+			<!-- Длительность страхового цикла. Определяет, в каких единицах задается PayTerm (в годах или месяцах)-->
+			<!-- Описание рисков, входящих в группу -->
+			<!-- Срок уплаты взносов для всей группы-->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции cтрахуемых рисков -->
+	<xsd:complexType name="InsuranceRisksType">
+		<xsd:sequence>
+			<xsd:element name="InsuranceRisk" type="InsuranceRiskType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа адреса -->
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>
+			<xsd:element name="AggregateValue">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CountryId">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="2"/>
+						<xsd:maxLength value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PostCode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="6"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Region">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="District">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="City">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Street">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HouseNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Flat">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Building">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeAggregateValue" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeRegion" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeDistrict" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeCity" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeStreet" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeHouseNo" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeFlat" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="NativeBuilding" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="40"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<!-- Данные адреса одной строкой -->
+			<!-- Код страны -->
+			<!-- Почтовый код -->
+			<!-- Область -->
+			<!-- Район -->
+			<!-- Город -->
+			<!-- Улица -->
+			<!-- Номер дома -->
+			<!-- Номер квартиры -->
+			<!-- Корпус -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа реквизитов заявления -->
+	<xsd:complexType name="ApplicationRequisitesType">
+		<xsd:sequence>
+			<xsd:element name="StatementNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="StatementDate" type="DateString"/>
+			<!-- Номер заявления на страхование -->
+			<!-- Дата заполнения заявления на страхование -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа сквозного номера -->
+	<xsd:simpleType name="RowIdType">
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<!-- Описание типа денежной суммы -->
+	<xsd:simpleType name="AmountType">
+		<xsd:restriction base="xsd:long"/>
+	</xsd:simpleType>
+	<!-- Описание типа "к кому относится риск" -->
+	<xsd:simpleType name="ForIndividualType">
+		<xsd:restriction base="xsd:short">
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Описание типа даты -->
+	<xsd:simpleType name="DateString">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DateStringFormated">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:pattern value="[0-9]{2}\.[0-9]{2}\.[0-9]{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Описание типа символьного кода валюта -->
+	<xsd:simpleType name="CurrencySymbolCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="3"/>
+			<xsd:minLength value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Описание типа идентификатора брокера -->
+	<xsd:simpleType name="BrokerIdType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<!-- Тип родсвенных связей ФЛ с ЗЛ -->
+	<xsd:simpleType name="KinRelationType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- Описание типа брокера  -->
+	<xsd:complexType name="BrokerType">
+		<xsd:attribute name="BrokerId" type="BrokerIdType" use="required"/>
+		<!-- Идентификатор брокера -->
+	</xsd:complexType>
+	<!-- Описание типа корреспондента -->
+	<xsd:complexType name="CorrespondentType">
+		<xsd:sequence>
+			<xsd:element name="BankId" type="xsd:string"/>
+			<xsd:element name="AccountNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ContragentSName">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="38"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ContragentIdentifyCode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="14"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<!-- МФО банка Украины -->
+			<!-- Р/с -->
+			<!-- Наименование -->
+			<!-- Идентификационный код -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа кредитного договора -->
+	<xsd:complexType name="CreditAgreementType">
+		<xsd:sequence>
+			<xsd:element name="DateFrom" type="DateString" nillable="true" minOccurs="0"/>
+			<xsd:element name="DateTill" type="DateString" nillable="true" minOccurs="0"/>
+			<xsd:element name="Id" type="xsd:string"/>
+			<xsd:element name="CANo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AccountNo" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SignDate" type="DateString" nillable="true" minOccurs="0"/>
+			<!-- string потому что nullable -->
+			<!-- Дата начала действия -->
+			<!-- Дата окончания действия -->
+			<!-- Идентификатор -->
+			<!-- Номер кредитного договора -->
+			<!-- Номер счёта в банковской системе (кредитный, карточный) появился с версии 1.0.2-->
+			<!-- Дата заключения -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа документа -->
+	<xsd:complexType name="DocumentType">
+		<xsd:sequence>
+			<xsd:element name="Id" type="xsd:long"/>
+			<xsd:element name="ExtReferenceName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="DocumentNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DocumentDate" type="DateStringFormated"/>
+			<xsd:element name="BankDate" type="DateStringFormated"/>
+			<xsd:element name="CurrencySymbolCode" type="CurrencySymbolCodeType"/>
+			<xsd:element name="Amount" type="AmountType"/>
+			<xsd:element name="SideARequisites" type="CorrespondentType" minOccurs="0"/>
+			<xsd:element name="SideBRequisites" type="CorrespondentType" minOccurs="0"/>
+			<xsd:element name="PlatPurpose" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="255"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="InpaymentSubTypeId" type="xsd:long" minOccurs="0"/>
+			<!-- Id документа в БД CАБ -->
+			<!-- Название внешней системы -->
+			<!-- Номер документа -->
+			<!-- Дата документа -->
+			<!-- Дата, "документ принят" -->
+			<!-- Валюта документа -->
+			<!-- Сумма документа -->
+			<!-- Плательщик -->
+			<!-- Получатель -->
+			<!-- Назначение платежа -->
+			<!-- Субтип (обычный, скидка) -->
+		</xsd:sequence>
+		<xsd:attribute name="rowId" type="RowIdType" use="required"/>
+		<!-- Cквозной номер в пределах реестра -->
+	</xsd:complexType>
+	<!-- Описание типа связки документа и полиса -->
+	<xsd:complexType name="DocumentLinkType">
+		<xsd:sequence>
+			<xsd:element name="DocumentRowId" type="RowIdType"/>
+			<xsd:element name="CrossCurrencyRate" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="CrossCurrencyBase" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PoliceRelatedAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PaymentAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RKOCharged" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PoliceCurrencyRelatedAmount" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PayNumber" type="xsd:string" minOccurs="0"/>
+			<!-- Ссылка на сквозной номер документа -->
+			<!-- Отношения курса валюты полиса к курсу валюты документа -->
+			<!-- За количество единиц -->
+			<!-- Часть суммы документа, привязанная к полису. Валюта полиса -->
+			<!-- Сумма исходного платежа по полису. Валюта полиса -->
+			<!-- Сумма удержанного РКО из суммы платежа -->
+			<!-- Сумма платежа в валюте документа  -->
+			<!-- Порядковый номер или период оплаты -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции связок документов и полиса -->
+	<xsd:complexType name="DocumentLinksType">
+		<xsd:sequence>
+			<xsd:element name="DocumentLink" type="DocumentLinkType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции документов -->
+	<xsd:complexType name="DocumentsType">
+		<xsd:sequence>
+			<xsd:element name="Document" type="DocumentType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции выгодоприобретателей по платежу -->
+	<xsd:complexType name="InsuranceBeneficiariesType">
+		<xsd:sequence>
+			<xsd:element name="InsuranceBeneficiary" type="InsuranceBeneficiaryType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа выгодоприобретателя -->
+	<xsd:complexType name="InsuranceBeneficiaryType">
+		<xsd:sequence>
+			<xsd:element name="EventType" type="xsd:short"/>
+			<xsd:element name="ForIndividualTypeID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Rate" type="xsd:double"/>
+			<xsd:element name="NR">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:short">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="KinRelationTypeCode" type="KinRelationType" minOccurs="0"/>
+			<xsd:element name="Order" type="xsd:byte"/>
+			<xsd:element name="EventIndividualRowId" type="xsd:string" minOccurs="0"/>
+			<!-- Тип выгодоприобретателя -->
+			<!-- Процент от страховой суммы -->
+			<!-- Безотзывное право выгодоприобретателя на получение прибыли -->
+			<!-- Очередность выгодоприобретателя -->
+			<!-- Код ФЛ к которому относится риск -->
+		</xsd:sequence>
+		<xsd:attribute name="person" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="insurer"/>
+					<xsd:enumeration value="insured"/>
+					<xsd:enumeration value="bank"/>
+					<xsd:enumeration value="bylaw"/>
+					<xsd:enumeration value="other"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="physPersonRowId" type="xsd:string" use="optional"/>
+		<xsd:attribute name="LegalEntityRowId" type="xsd:string" use="optional"/>
+		<!-- Описание аттрибута лица -->
+		<!-- Ссылка на номер физического лица из секции физических лиц-->
+		<!-- Ссылка на номер юридического лица из секции юридических лиц-->
+	</xsd:complexType>
+	<!-- Описание типа секции субагентов  -->
+	<xsd:complexType name="SubAgentsType">
+		<xsd:sequence>
+			<xsd:element name="SubAgent" type="SubAgentType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа субагента -->
+	<xsd:complexType name="SubAgentType">
+		<xsd:sequence>
+			<xsd:element name="Rate" type="xsd:double"/>
+			<xsd:element name="IsResponsible" type="xsd:byte"/>
+			<!-- Процент от вознаграждения -->
+			<!-- Признак "ответственный за полис" -->
+		</xsd:sequence>
+		<xsd:attribute name="physPersonRowId" type="RowIdType" use="required"/>
+		<!-- Ссылка на номер физического лица из секции физических лиц-->
+	</xsd:complexType>
+	<!-- Описание типа информации о застрахованном -->
+	<xsd:complexType name="InsuredType">
+		<xsd:sequence>
+			<xsd:element name="Weight" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="Height" type="xsd:int" minOccurs="0"/>
+			<!-- Вес застрахованного лица, кг -->
+			<!-- Рост застрахованного лица, см -->
+		</xsd:sequence>
+		<xsd:attribute name="physPersonRowId" type="RowIdType" use="required"/>
+	</xsd:complexType>
+	<!-- Описание типа информации о страхователе -->
+	<xsd:complexType name="InsurerType">
+		<xsd:attribute name="person" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="insured"/>
+					<xsd:enumeration value="bank"/>
+					<xsd:enumeration value="other"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="physPersonRowId" type="xsd:string" use="optional"/>
+		<xsd:attribute name="LegalEntityRowId" type="xsd:string" use="optional"/>
+		<!-- Описание аттрибута лица -->
+		<!-- Ссылка на номер физического лица из секции физических лиц-->
+		<!-- Ссылка на номер юридического лица из секции юридических лиц-->
+	</xsd:complexType>
+	<!-- Описание типа имени -->
+	<xsd:complexType name="NameType">
+		<xsd:sequence>
+			<xsd:element name="Last">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="First">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Middle">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AggregateValue" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="152"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<!-- Фамилия -->
+			<!-- Имя -->
+			<!-- Отчество -->
+			<!-- ФИО одной строчкой -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа удостоверяющего личность документа -->
+	<xsd:complexType name="PassportDataType">
+		<xsd:sequence>
+			<xsd:element name="BirthDate" type="DateStringFormated"/>
+			<xsd:element name="BirthPlace">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Type" type="xsd:int"/>
+			<xsd:element name="PSerNoAggregateValue" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Series" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PNo" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="IssueDate" type="DateString" minOccurs="0"/>
+			<xsd:element name="IssuePlace">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<!-- Дата рождения -->
+			<!-- Место рождения -->
+			<!-- Тип удостоверяющего личность документа  -->
+			<!-- Номер и Серия паспорта одной строкой -->
+			<!-- Серия -->
+			<!-- Номер -->
+			<!-- Дата выдачи -->
+			<!-- Место выдачи -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа физичекого лица -->
+	<xsd:complexType name="PhysicalPersonType">
+		<xsd:sequence>
+			<xsd:element name="Original" type="NameType"/>
+			<xsd:element name="Genitive" type="NameType" minOccurs="0"/>
+			<xsd:element name="Native" type="NameType" minOccurs="0"/>
+			<xsd:element name="PassportData" type="PassportDataType"/>
+			<xsd:element name="NalogCode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="OfficialAddress" type="AddressType"/>
+			<xsd:element name="Phone">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="MailingAddress" type="AddressType" minOccurs="0"/>
+			<xsd:element name="Resident" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:short">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CountryId" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Gender" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="F"/>
+						<xsd:enumeration value="M"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="JobPosition" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="WorkPhone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="MobilePhone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="DoesNotHaveNalogcode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="NativeLanguageid" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="KinRelationTypeCode" type="KinRelationType" minOccurs="0"/>
+			<!-- ФИО -->
+			<!-- ФИО в родительном падеже -->
+			<!-- Данные удостоверяющего личность документа -->
+			<!-- Идентификационный код -->
+			<!-- Адрес -->
+			<!-- Телефон -->
+			<!-- Адрес для переписки -->
+			<!-- Признак резидентности -->
+			<!-- Код страны -->
+			<!-- Пол -->
+			<!-- WorkPhone: Рабочие телефоны (150 символов) -->
+			<!-- MobilePhone: Мобильный телефон (20 символов)  -->
+			<!-- DoesNotHaveNalogcode: ИНН отсутствует (эсли это ребенок или если отказался) -->
+			<!-- NativeLanguageid: Родной язык (для переписки) -->
+			<!-- KinRelationTypeCode: Тип родсвенных отношений ФЛ к ЗЛ (актуально для 3-их лиц)-->
+		</xsd:sequence>
+		<xsd:attribute name="rowId" type="RowIdType" use="required"/>
+		<!-- Сквозной в рамках секции номер -->
+	</xsd:complexType>
+	<!-- Описание типа секции физических лиц -->
+	<xsd:complexType name="PhysicalPersonsType">
+		<xsd:sequence>
+			<xsd:element name="PhysicalPerson" type="PhysicalPersonType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции третьих лиц -->
+	<xsd:complexType name="ThirdPersonsType">
+		<xsd:sequence>
+			<xsd:element name="ThirdPerson" type="ThirdPersonType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа третьего лица -->
+	<xsd:complexType name="ThirdPersonType">
+		<xsd:attribute name="physPersonRowId" type="RowIdType" use="required"/>
+		<!-- Ссылка на номер физического лица из секции физических лиц-->
+	</xsd:complexType>	
+	<!-- Описание типа юридического лица -->
+	<xsd:complexType name="LegalEntityType">
+		<xsd:sequence>
+			<xsd:element name="Name">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="150"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ContactInfo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="250"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="identifycode">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="14"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="OfficialAddress" type="AddressType"/>
+			<xsd:element name="MailingAddress" type="AddressType" minOccurs="0"/>
+			<!-- Название фирмы -->
+			<!-- Контактная информация (тел.)-->
+			<!-- Адрес регистрации -->
+			<!-- Адрес переписки -->
+		</xsd:sequence>
+		<xsd:attribute name="rowId" type="RowIdType" use="required"/>
+		<!-- Сквозной в рамках секции номер -->
+	</xsd:complexType>
+	<!-- Описание типа секции юридических лиц -->
+	<xsd:complexType name="LegalEntitiesType">
+		<xsd:sequence>
+			<xsd:element name="LegalEntity" type="LegalEntityType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции полисов -->
+	<xsd:complexType name="PoliciesType">
+		<xsd:sequence>
+			<xsd:element name="Policy" type="PolicyType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа полиса -->
+	<xsd:complexType name="PolicyType">
+		<xsd:sequence>
+			<xsd:element name="PolicyNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="IssueDate" type="DateString" minOccurs="0"/>
+			<xsd:element name="DateFrom" type="DateString" minOccurs="0"/>
+			<xsd:element name="DateTill" type="DateString" minOccurs="0"/>
+			<xsd:element name="ShtrihCode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Language" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CreditAgreement" type="CreditAgreementType" minOccurs="0"/>
+			<xsd:element name="ApplicationRequisites" type="ApplicationRequisitesType" minOccurs="0"/>
+			<xsd:element name="CurrencyCode" type="CurrencySymbolCodeType"/>
+			<xsd:element name="CurrencyRateBegin" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="CurrencyRateBase" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PaymentFrequency">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="E"/>
+						<xsd:enumeration value="Y"/>
+						<xsd:enumeration value="H"/>
+						<xsd:enumeration value="Q"/>
+						<xsd:enumeration value="M"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="InsuranceSchemeId" type="xsd:int"/>
+			<xsd:element name="InsuranceSchemeSubtypeCode" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="25"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TariffReferenceDate" type="DateString" minOccurs="0"/>
+			<xsd:element name="PhysicalPersons" type="PhysicalPersonsType"/>
+			<xsd:element name="LegalEntities" type="LegalEntitiesType" minOccurs="0"/>
+			<xsd:element name="Insured" type="InsuredType"/>
+			<xsd:element name="Insurer" type="InsurerType"/>
+			<xsd:element name="Broker" type="BrokerType" minOccurs="0"/>
+			<xsd:element name="SubAgents" type="SubAgentsType" minOccurs="0"/>
+			<xsd:element name="InsuranceBeneficiaries" type="InsuranceBeneficiariesType"/>
+			<xsd:element name="DocumentLinks" type="DocumentLinksType" minOccurs="0"/>
+			<xsd:element name="InsuranceRisks" type="InsuranceRisksType"/>
+			<xsd:element name="RetailerID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RegionId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="DepartmentId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="InvestmentProfitGroupId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ReductionToZero" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="InflationAdjustment" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ThirdPersons" type="ThirdPersonsType" minOccurs="0"/>
+			<!-- Номер полиса -->
+			<!-- Дата выписки полиса -->
+			<!-- Дата "договор действует с" -->
+			<!-- Дата "договор действует по" -->
+			<!-- Штрих-код -->
+			<!-- Язык -->
+			<!-- Реквизиты кредитного договора -->
+			<!-- Реквизиты заявки -->
+			<!-- Код валюты -->
+			<!-- Курс на дату заключения договора -->
+			<!-- За количество единиц -->
+			<!-- Периодичность уплаты взновов -->
+			<!-- Программа страхования -->
+			<!-- Субтип или пакет -->
+			<!-- TariffReferenceDate: Дата расчета тарифа-->
+			<!-- Секция физических лиц  -->
+			<!-- Секция информации о застрохованном -->
+			<!-- Секция информации о страхователе -->
+			<!-- Секция информации о брокере -->
+			<!-- Секция информации о субагентах -->
+			<!-- InsuranceBeneficiaries: Секция информации о выгодоприобретателях -->
+			<!-- Секция инфрмации о связках с документами -->
+			<!-- DocumentLinks: с версии 1.0.2 стал опциональным -->
+			<!-- InsuranceRisks: Секция страхуемых рисков -->
+			<!-- RetailerID: Код канала продаж полиса-->
+			<!-- RegionId: Код региона-->
+			<!-- DepartmentId: Подразделение -->
+			<!-- InvestmentProfitGroupId: Группа инвест. дохода -->
+			<!-- ReductionToZero: Можно редуцировать в нуль (1: да, 0: нет) -->
+			<!-- InflationAdjustment: Можно предлагать индексацию (1: да, 0: нет) -->
+			<!-- ThirdPersons: Секция информации о 3-х лицах -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание изменения оставшейся суммы по кредиту т.к. это эквивалентно с/с то в разрезе риска -->
+	<xsd:complexType name="CreditAmountChangeType">
+		<xsd:sequence>
+			<xsd:element name="ChangeDate" type="DateStringFormated"/>
+			<xsd:element name="RiskId" type="xsd:int"/>
+			<xsd:element name="ForIndividualTypeID" type="ForIndividualType"/>
+			<xsd:element name="CreditAmount" type="AmountType"/>
+			<!-- Дата начала действия новой информации по задолженности по кредиту -->
+			<!-- Код риска -->
+			<!-- К кому относится риск-->
+			<!-- Новая задолженность по кредиту -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- изменение остатков по кредиту. в разрезе риска -->
+	<xsd:complexType name="CreditAmountChangesType">
+		<xsd:sequence>
+			<xsd:element name="CreditAmountChange" type="CreditAmountChangeType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Изменения полиса -->
+	<xsd:complexType name="PolicyChangeType">
+		<xsd:sequence>
+			<xsd:element name="PolicyNo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="CreditAmountChanges" type="CreditAmountChangesType" minOccurs="0"/>
+			<!-- Номер полиса  -->
+			<!-- Изменения задолженности по кредиту -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Описание типа секции вносимых изменений -->
+	<xsd:complexType name="PoliciesChangesType">
+		<xsd:sequence>
+			<xsd:element name="PolicyChange" type="PolicyChangeType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Реестр -->
+	<xsd:element name="Registry">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Parameters" type="ParametersType" minOccurs="0"/>
+				<xsd:element name="SenderRequisites" type="SenderRequisitesType"/>
+				<xsd:element name="Documents" type="DocumentsType" minOccurs="0"/>
+				<xsd:element name="Policies" type="PoliciesType"/>
+				<xsd:element name="PoliciesChanges" type="PoliciesChangesType" minOccurs="0"/>
+				<!-- Информация о реестре -->
+				<!-- Секция документов -->
+				<!-- с версии 1.0.2 стал опциональным -->
+				<!-- Секция полисов -->
+				<!-- Секция вносимых изменений -->
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" use="required"/>
+			<!-- Номер версии реестра -->
+		</xsd:complexType>
+	</xsd:element>
+	<!-- Описание типа информации о реестре  -->
+	<xsd:complexType name="SenderRequisitesType">
+		<xsd:sequence>
+			<xsd:element name="FileId" type="xsd:integer"/>
+			<xsd:element name="SenderBankId" type="xsd:integer"/>
+			<xsd:element name="SenderBankName">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="84"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="HeadBankId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ReceiverId" type="xsd:string"/>
+			<xsd:element name="FileType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FileName" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="24"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FileDate" type="DateStringFormated" minOccurs="0"/>
+			<xsd:element name="FileTime" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="FileOper" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="IdKey" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="FileSign" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="1000"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="SignType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<!-- Идентификатор файла -->
+			<!-- МФО банка-отправителя реестра -->
+			<!-- Наименование банка-отправителя реестра -->
+			<!-- МФО головного банка -->
+			<!-- Код получателя реестра -->
+			<!-- Тип файла реестра -->
+			<!-- Имя файла реестра  -->
+			<!-- Дата формирования файла реестра -->
+			<!-- Время формирования файла реестра -->
+			<!-- Оператор -->
+			<!-- Идентификатор ключа -->
+			<!-- Цифровая подпись -->
+			<!-- Тип цифровой подписи -->
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

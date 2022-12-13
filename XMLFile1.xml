@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<master>
+	<id>mater id</id>
+	<details>
+		<detail>
+			<id>detail 1 id</id>
+			<sub_details>
+				<sub_detail>
+					<id>sub_detail 1.1 id</id>
+				</sub_detail>
+				<sub_detail>
+					<id>sub_detail 1.2 id</id>
+				</sub_detail>
+			</sub_details>
+		</detail>
+		<detail>
+			<id>detail 2 id</id>
+			<sub_details>
+				<sub_detail>
+					<id>sub_detail 2.1 id</id>
+				</sub_detail>
+				<sub_detail>
+					<id>sub_detail 2.2 id</id>
+				</sub_detail>
+			</sub_details>
+		</detail>
+		<detail>
+			<id>detail 3 id</id>
+		</detail>
+	</details>
+</master>
